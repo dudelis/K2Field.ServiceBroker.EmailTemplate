@@ -9,18 +9,25 @@ using SourceCode.SmartObjects.Services.ServiceSDK.Objects;
 using SourceCode.SmartObjects.Services.ServiceSDK.Types;
 using System.Transactions;
 using K2Field.ServiceBroker.EmailTemplate.Constants;
+using SourceCode.Hosting.Server.Interfaces;
 
 namespace K2Field.ServiceBroker.EmailTemplate
 {
-    public class EmailTemplateServiceBroker : ServiceAssemblyBase
+    public class EmailTemplateServiceBroker : ServiceAssemblyBase, IHostableType
     {
-
+        #region Private Properties
+        private static readonly object serviceObjectToTypeLock = new object();
+        private static readonly object serviceObjectLock = new object();
+        private static Dictionary<string, Type> _serviceObjectToType = new Dictionary<string, Type>();
+        private List<ServiceObjectBase> _serviceObjects;
+        private object syncobject = new object();
+        #endregion Private Properties
 
         public override string GetConfigSection()
         {
-            Service.ServiceConfiguration.Add(ServiceConfiguration.ServerName, true, "localhost");
-            Service.ServiceConfiguration.Add(Resources.Port, true, "5555");
-            Service.ServiceConfiguration.Add(Resources.DelimitedInputIDs, true, "Id1;Id2");
+            Service.ServiceConfiguration.Add(ServiceConfig.ServerName, true, "localhost");
+            Service.ServiceConfiguration.Add(ServiceConfig.Port, true, "5555");
+            Service.ServiceConfiguration.Add(ServiceConfig.DelimitedInputIDs, true, "Id1;Id2");
             return base.GetConfigSection();
         }
 
