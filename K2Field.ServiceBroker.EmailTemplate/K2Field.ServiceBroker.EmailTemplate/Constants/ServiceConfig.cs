@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace K2Field.ServiceBroker.EmailTemplate.Constants
 {
-    public static class ServiceConfiguration
+    public static class ServiceConfig
     {
         public const string ServerName = "ServerName";
         public const string Port = "Port";

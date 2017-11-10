@@ -8,7 +8,7 @@ using SourceCode.SmartObjects.Services.ServiceSDK;
 using SourceCode.SmartObjects.Services.ServiceSDK.Objects;
 using SourceCode.SmartObjects.Services.ServiceSDK.Types;
 using System.Transactions;
-using K2Field.ServiceBroker.EmailTemplate.Properties;
+using K2Field.ServiceBroker.EmailTemplate.Constants;
 
 namespace K2Field.ServiceBroker.EmailTemplate
 {
@@ -18,7 +18,7 @@ namespace K2Field.ServiceBroker.EmailTemplate
 
         public override string GetConfigSection()
         {
-            Service.ServiceConfiguration.Add(Resources.ServerName, true, "localhost");
+            Service.ServiceConfiguration.Add(ServiceConfiguration.ServerName, true, "localhost");
             Service.ServiceConfiguration.Add(Resources.Port, true, "5555");
             Service.ServiceConfiguration.Add(Resources.DelimitedInputIDs, true, "Id1;Id2");
             return base.GetConfigSection();

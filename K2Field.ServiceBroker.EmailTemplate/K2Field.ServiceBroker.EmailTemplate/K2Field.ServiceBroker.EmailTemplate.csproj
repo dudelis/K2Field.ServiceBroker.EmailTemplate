@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ServiceConfiguration.cs" />
+    <Compile Include="Constants\ServiceConfig.cs" />
     <Compile Include="EmailTemplateServiceBroker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
