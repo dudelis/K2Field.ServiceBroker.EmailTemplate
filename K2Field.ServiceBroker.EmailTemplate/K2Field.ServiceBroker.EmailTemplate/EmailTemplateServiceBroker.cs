@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using SourceCode.SmartObjects.Services.ServiceSDK;
 using SourceCode.SmartObjects.Services.ServiceSDK.Objects;
 using SourceCode.SmartObjects.Services.ServiceSDK.Types;
 using System.Transactions;
+using K2Field.ServiceBroker.EmailTemplate.Properties;
 
 namespace K2Field.ServiceBroker.EmailTemplate
 {
@@ -14,25 +16,45 @@ namespace K2Field.ServiceBroker.EmailTemplate
     {
 
 
-
         public override string GetConfigSection()
         {
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.EnvironmentToUse, false, ""); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.DefaultCulture, true, "EN-us"); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.Platform, false, "ASP"); //Checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.AdMaxResultSize, false, "1000"); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.LDAPPaths, false, "LDAP://DC=denallix,DC=COM"); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.NetbiosNames, false, "Denallix"); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.ChangeContainsToStartsWith, true, "true"); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.AdditionalADProps, false, ""); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.ADOSMOQueries, false, ""); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.ADOSMOQueriesFile, false, ""); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.AllowPowershellScript, true, "true"); //checked
-            Service.ServiceConfiguration.Add(Constants.ConfigurationProperties.PowerShellSubdirectories, false, "PowerShellScripts"); //checked
+            Service.ServiceConfiguration.Add(Resources.ServerName, true, "localhost");
+            Service.ServiceConfiguration.Add(Resources.Port, true, "5555");
+            Service.ServiceConfiguration.Add(Resources.DelimitedInputIDs, true, "Id1;Id2");
             return base.GetConfigSection();
         }
 
+        public override string DescribeSchema()
+        {
+            Service.Name = "K2Field.ServiceBroker.EmailTemplate";
+            Service.MetaData.DisplayName = "Email Templating";
+            Service.MetaData.Description = "A Service Broker that provides email templating functionality for the various functional service objects that aid the implementation of a K2 project.";
 
+            bool requireServiceFolders = false;
+            foreach (ServiceObjectBase entry in ServiceObjectClasses)
+            {
+                if (!string.IsNullOrEmpty(entry.ServiceFolder))
+                {
+                    requireServiceFolders = true;
+                }
+            }
+
+            foreach (ServiceObjectBase entry in ServiceObjectClasses)
+            {
+                List<ServiceObject> serviceObjects = entry.DescribeServiceObjects();
+                foreach (ServiceObject so in serviceObjects)
+                {
+                    Service.ServiceObjects.Create(so);
+                    if (requireServiceFolders)
+                    {
+                        ServiceFolder sf = InitializeServiceFolder(entry.ServiceFolder, entry.ServiceFolder);
+                        sf.Add(so);
+                    }
+                }
+            }
+
+            return base.DescribeSchema();
+        }
 
 
         #region Private Methods
@@ -136,37 +158,7 @@ namespace K2Field.ServiceBroker.EmailTemplate
         #endregion
 
         #region Public overrides for ServiceAssemblyBase
-        public override string DescribeSchema()
-        {
-            Service.Name = "K2NEServiceBroker";
-            Service.MetaData.DisplayName = "K2NE's General Purpose Service Broker";
-            Service.MetaData.Description = "A Service Broker that provides various functional service objects that aid the implementation of a K2 project.";
-
-            bool requireServiceFolders = false;
-            foreach (ServiceObjectBase entry in ServiceObjectClasses)
-            {
-                if (!string.IsNullOrEmpty(entry.ServiceFolder))
-                {
-                    requireServiceFolders = true;
-                }
-            }
-
-            foreach (ServiceObjectBase entry in ServiceObjectClasses)
-            {
-                List<ServiceObject> serviceObjects = entry.DescribeServiceObjects();
-                foreach (ServiceObject so in serviceObjects)
-                {
-                    Service.ServiceObjects.Create(so);
-                    if (requireServiceFolders)
-                    {
-                        ServiceFolder sf = InitializeServiceFolder(entry.ServiceFolder, entry.ServiceFolder);
-                        sf.Add(so);
-                    }
-                }
-            }
-
-            return base.DescribeSchema();
-        }
+        
         public override void Execute()
         {
             // Value can't be set in K2Connection constructor, because the SmartBroker sets the UserName value after Init
