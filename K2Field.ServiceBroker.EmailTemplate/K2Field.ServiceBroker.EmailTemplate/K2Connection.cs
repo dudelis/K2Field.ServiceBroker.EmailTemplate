@@ -24,21 +24,7 @@ namespace K2Field.ServiceBroker.EmailTemplate
         
         public K2Connection(IServiceMarshalling serviceMarshalling, IServerMarshaling serverMarshaling)
         {
-            // These values are static because they won't change on the server.
-            // This code will only execute once after K2HostServer starts
-            if (string.IsNullOrEmpty(_defaultWorkflowServerConnectionString) || _workflowServerPort == 0)
-            {
-                var appSettings = ConfigurationManager.AppSettings;
-                _defaultWorkflowServerConnectionString = ConfigurationManager.ConnectionStrings["WorkflowServer"].ConnectionString;
-
-                ConnectionSetup workflowConnectionSetup = new ConnectionSetup();
-                workflowConnectionSetup.ParseConnectionString(_defaultWorkflowServerConnectionString);
-
-                _workflowServerPort = int.Parse(workflowConnectionSetup.ConnectionParameters[SourceCode.Workflow.Client.ConnectionSetup.ParamKeys.Port]);
-            }
-
             _sessionManager = serverMarshaling.GetSessionManagerContext();
-
             var sessionCookie = SessionManager.CurrentSessionCookie;
             _sessionConnectionString = EmailTemplateServiceBroker.SecurityManager.GetSessionConnectionString(sessionCookie);
         }
@@ -68,9 +54,10 @@ namespace K2Field.ServiceBroker.EmailTemplate
             var server = new T();
             server.CreateConnection();
             server.Connection.Open(SessionConnectionString);
-
             return server;
         }
+
+
 
         public Connection GetWorkflowClientConnection()
         {

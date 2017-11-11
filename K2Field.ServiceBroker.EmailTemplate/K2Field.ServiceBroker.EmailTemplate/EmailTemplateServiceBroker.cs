@@ -29,9 +29,11 @@ namespace K2Field.ServiceBroker.EmailTemplate
         #region Public overrides for ServiceAssemblyBase
         public override string GetConfigSection()
         {
-            Service.ServiceConfiguration.Add(ServiceConfig.ServerName, true, "localhost");
-            Service.ServiceConfiguration.Add(ServiceConfig.Port, true, "5555");
             Service.ServiceConfiguration.Add(ServiceConfig.DelimitedInputIDs, true, "Id1;Id2");
+            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderSmoSystemName, true, "SmoSystemName");
+            Service.ServiceConfiguration.Add(ServiceConfig.ListMethodName, true, "List");
+            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderPropertyName, true, "Placeholder");
+            Service.ServiceConfiguration.Add(ServiceConfig.AdoNetPropertyName, true, "AdoNetQuery");
             return base.GetConfigSection();
         }
 
