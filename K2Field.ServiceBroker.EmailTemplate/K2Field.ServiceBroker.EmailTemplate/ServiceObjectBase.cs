@@ -9,6 +9,8 @@ namespace K2Field.ServiceBroker.EmailTemplate
 {
     public abstract class ServiceObjectBase
     {
+        public virtual string ServiceFolder => string.Empty;
+        
 
         protected EmailTemplateServiceBroker ServiceBroker
         {
@@ -16,11 +18,13 @@ namespace K2Field.ServiceBroker.EmailTemplate
             private set;
         }
 
-        public ServiceObjectBase(EmailTemplateServiceBroker broker)
+        protected ServiceObjectBase(EmailTemplateServiceBroker broker)
         {
+            ServiceBroker = broker;
 
         }
 
         public abstract List<ServiceObject> DescribeServiceObjects();
+        public abstract void Execute();
     }
 }
