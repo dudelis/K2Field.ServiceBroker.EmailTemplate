@@ -15,4 +15,4 @@ The code is provided as is. If you want to contribute, please, read the [Contrib
 
 
 ## License
-This software is GPL v3. See our [License](Documentation/LICENSE.txt)
+This software is MIT. See our [License](LICENSE.md)
