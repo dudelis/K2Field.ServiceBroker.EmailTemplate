@@ -15,4 +15,4 @@ The code is provided as is. If you want to contribute, please, read the [Contrib
 
 
 ## License
-This software is MIT. See our [License](LICENSE)
+This software is MIT. See [License](LICENSE)
