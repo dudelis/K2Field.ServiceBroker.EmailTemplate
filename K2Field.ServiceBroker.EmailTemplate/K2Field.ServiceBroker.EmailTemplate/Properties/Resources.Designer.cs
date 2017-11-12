@@ -70,6 +70,51 @@ namespace K2Field.ServiceBroker.EmailTemplate.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Query cannot start with Delete or Update - {0}.
+        /// </summary>
+        internal static string QueryCannotStartDeleteUpdate {
+            get {
+                return ResourceManager.GetString("QueryCannotStartDeleteUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The required parameter {0} is empty..
+        /// </summary>
+        internal static string RequiredParameterIsEmpty {
+            get {
+                return ResourceManager.GetString("RequiredParameterIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The required parameter {0} is not found..
+        /// </summary>
+        internal static string RequiredParameterNotFound {
+            get {
+                return ResourceManager.GetString("RequiredParameterNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The required property {0} is empty..
+        /// </summary>
+        internal static string RequiredPropertyIsEmpty {
+            get {
+                return ResourceManager.GetString("RequiredPropertyIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The required property {0} is not found..
+        /// </summary>
+        internal static string RequiredPropertyNotFound {
+            get {
+                return ResourceManager.GetString("RequiredPropertyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ServiceObject is not set..
         /// </summary>
         internal static string SOIsNotSet {

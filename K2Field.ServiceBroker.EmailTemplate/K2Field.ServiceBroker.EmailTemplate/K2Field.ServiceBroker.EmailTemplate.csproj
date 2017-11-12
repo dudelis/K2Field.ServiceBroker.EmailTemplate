@@ -75,7 +75,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ServiceObjectBase.cs" />
-    <Compile Include="ServiceObjects\EmailTemplateSO.cs" />
+    <Compile Include="ServiceObjects\EmailTemplate\EmailTemplateSO.cs" />
+    <Compile Include="ServiceObjects\EmailTemplate\PlaceholderItem.cs" />
+    <Compile Include="ServiceObjects\EmailTemplate\PlaceholderItemCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

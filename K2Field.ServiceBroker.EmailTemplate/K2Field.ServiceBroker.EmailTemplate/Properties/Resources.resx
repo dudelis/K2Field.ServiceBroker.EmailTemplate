@@ -120,6 +120,21 @@
   <data name="IsNotValidSO" xml:space="preserve">
     <value>ServiceObject is not valid.</value>
   </data>
+  <data name="QueryCannotStartDeleteUpdate" xml:space="preserve">
+    <value>Query cannot start with Delete or Update - {0}</value>
+  </data>
+  <data name="RequiredParameterIsEmpty" xml:space="preserve">
+    <value>The required parameter {0} is empty.</value>
+  </data>
+  <data name="RequiredParameterNotFound" xml:space="preserve">
+    <value>The required parameter {0} is not found.</value>
+  </data>
+  <data name="RequiredPropertyIsEmpty" xml:space="preserve">
+    <value>The required property {0} is empty.</value>
+  </data>
+  <data name="RequiredPropertyNotFound" xml:space="preserve">
+    <value>The required property {0} is not found.</value>
+  </data>
   <data name="SOIsNotSet" xml:space="preserve">
     <value>ServiceObject is not set.</value>
   </data>

@@ -13,5 +13,6 @@ namespace K2Field.ServiceBroker.EmailTemplate.Constants
         public const string PlaceholderPropertyName = "PlaceholderPropertyName";
         public const string AdoNetPropertyName = "AdoNetPropertyName";
         public const string DelimitedInputIDs = "DelimitedInputIDs";
+        public const string PlaceholderWrapper = "Placeholder Wrapper - e.g. %text%";
     }
 }
