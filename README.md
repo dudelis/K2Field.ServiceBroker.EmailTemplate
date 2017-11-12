@@ -11,7 +11,7 @@ To be defined
 At the moment, there is no installer. To be developed later.
 
 ## Disclaimer
-The code is provided as is. If you want to contribute, please, read the [Contributing Guidelines](CONTRIBUTING.md)
+The code is provided as is. If you want to contribute, please, read the [Contribution Guidelines](K2Field.ServiceBroker.EmailTemplate/CONTRIBUTING.md)
 
 
 ## License
