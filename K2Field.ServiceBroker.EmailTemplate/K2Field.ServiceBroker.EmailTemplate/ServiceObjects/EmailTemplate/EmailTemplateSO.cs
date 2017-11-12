@@ -50,7 +50,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 
             Method mGetEmailTemplate = Helper.CreateMethod(Constants.Methods.GetEmailTemplate, "Returns the Email Template with changed placholders", MethodType.Execute);
             mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailBody);
-            mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailBody);
+            mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailSubject);
             mGetEmailTemplate.ReturnProperties.Add(Constants.Properties.OutputEmailBody);
             mGetEmailTemplate.ReturnProperties.Add(Constants.Properties.OutputEmailSubject);
             mGetEmailTemplate.MethodParameters = Helper.GetMethodParamaters(GetInputIds());
@@ -97,7 +97,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
                 //Getting only the placholders, which are used in the EmailSubject/EmailBody
                 foreach (DataRow row in dt.Rows)
                 {
-                    var placeholder = _pWrapper + row[_pNameProperty] + _pWrapper;
+                    var placeholder = _placeholders.Wrapper + row[_pNameProperty] + _placeholders.Wrapper;
                     if (_inputSubject.Contains(placeholder) || _inputBody.Contains(placeholder))
                     {
                         _placeholders.AddItem(row[_pNameProperty].ToString(), row[_pAdoNetProperty].ToString());

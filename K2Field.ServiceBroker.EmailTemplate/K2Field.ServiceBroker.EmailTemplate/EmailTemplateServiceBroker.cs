@@ -8,6 +8,7 @@ using SourceCode.SmartObjects.Services.ServiceSDK.Types;
 using K2Field.ServiceBroker.EmailTemplate.Constants;
 using K2Field.ServiceBroker.EmailTemplate.Properties;
 using K2Field.ServiceBroker.EmailTemplate.ServiceObjects;
+using K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate;
 using SourceCode.Hosting.Server.Interfaces;
 
 namespace K2Field.ServiceBroker.EmailTemplate
@@ -197,12 +198,12 @@ namespace K2Field.ServiceBroker.EmailTemplate
                         return _serviceObjectToType;
                     }
                     _serviceObjectToType = new Dictionary<string, Type>();
-                    foreach (var entry in ServiceObjectClasses)
+                    foreach (ServiceObjectBase soBase in ServiceObjectClasses)
                     {
-                        var sObjects = entry.DescribeServiceObjects();
-                        foreach (var sObject in sObjects)
+                        var sObjects = soBase.DescribeServiceObjects();
+                        foreach (ServiceObject so in sObjects)
                         {
-                            _serviceObjectToType.Add(sObject.Name, sObject.GetType());
+                            _serviceObjectToType.Add(so.Name, soBase.GetType());
                         }
                     }
                 }

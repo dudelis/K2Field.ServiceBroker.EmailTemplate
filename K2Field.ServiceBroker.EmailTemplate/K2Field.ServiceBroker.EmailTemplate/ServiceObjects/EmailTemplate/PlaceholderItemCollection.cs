@@ -11,14 +11,13 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 {
     public class PlaceholderItemCollection
     {
-        public string Wrapper;
         public List<PlaceholderItem> Items;
 
+        public string Wrapper { get; set; }
         public PlaceholderItemCollection()
         {
             Items = new List<PlaceholderItem>();
         }
-
         public void AddItem(string name, string adoQuery)
         {
             var item = new PlaceholderItem()
@@ -28,16 +27,14 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             };
             Items.Add(item);
         }
-
         public void GetAllValues(SmartObjectClientServer smoServer, Dictionary<string, string> inputIds)
         {
             foreach (var p in Items)
             {
-                
                 var query = p.AdoQuery;
                 if (query.ToLower().StartsWith("delete ") || query.ToLower().StartsWith("update "))
                 {
-                    throw new ArgumentException(String.Format(Resources.QueryCannotStartDeleteUpdate, query));
+                    throw new ArgumentException(string.Format(Resources.QueryCannotStartDeleteUpdate, query));
                 }
                 foreach (var item in inputIds)
                 {
@@ -45,17 +42,22 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
                     query = query.Replace(searchValue, item.Value);
                 }
                 DataTable results = smoServer.ExecuteSQLQueryDataTable(query);
-                p.Value = results.Rows[0][0].ToString();
+                if (results.Rows.Count > 0)
+                {
+                    p.Value = results.Rows[0][0].ToString();
+                }
             }
         }
-
         public string ReplacePlaceholders(string input)
         {
+            var output = string.Empty;
+            if (string.IsNullOrEmpty(input)) return output;
             foreach (var item in Items)
             {
                 var placeholder = Wrapper + item.Name + Wrapper;
+                output = input.Replace(placeholder, item.Value);
             }
-            throw new NotImplementedException();
+            return output;
         }
     }
 }

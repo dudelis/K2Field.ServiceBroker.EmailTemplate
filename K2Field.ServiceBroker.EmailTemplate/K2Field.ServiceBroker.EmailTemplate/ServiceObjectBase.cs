@@ -20,7 +20,7 @@ namespace K2Field.ServiceBroker.EmailTemplate
             private set;
         }
 
-        protected ServiceObjectBase(EmailTemplateServiceBroker broker)
+        public ServiceObjectBase(EmailTemplateServiceBroker broker)
         {
             ServiceBroker = broker;
 
