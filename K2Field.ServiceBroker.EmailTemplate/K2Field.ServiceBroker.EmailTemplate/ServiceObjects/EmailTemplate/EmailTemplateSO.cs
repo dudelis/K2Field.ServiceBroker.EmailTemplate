@@ -75,8 +75,8 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
         private void GetEmailTemplate()
         {
             //Getting all the ServiceConfig and Input properties
-            _inputSubject = GetStringProperty(Constants.Properties.InputEmailSubject);
-            _inputBody = GetStringProperty(Constants.Properties.InputEmailBody);
+            _inputSubject = GetStringProperty(Constants.Properties.InputEmailSubject) ?? string.Empty;
+            _inputBody = GetStringProperty(Constants.Properties.InputEmailBody) ?? string.Empty;
             _pSmoSystemName =
                 ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderSmoSystemName].ToString();
             _pSmoListName = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.ListMethodName].ToString();

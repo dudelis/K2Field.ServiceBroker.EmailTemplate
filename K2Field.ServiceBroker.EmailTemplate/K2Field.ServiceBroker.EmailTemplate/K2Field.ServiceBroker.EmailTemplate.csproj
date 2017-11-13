@@ -93,7 +93,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Debug (
-  xcopy /y /r  "$(TargetDir)$(TargetName).*" "C:\Temp\"
+  xcopy /y /r  "$(TargetDir)$(TargetName).*" "C:\Program Files (x86)\K2 blackpearl\ServiceBroker\"
 net start "K2 Blackpearl Server"
  )
 </PostBuildEvent>
