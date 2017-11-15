@@ -8,11 +8,12 @@ namespace K2Field.ServiceBroker.EmailTemplate.Constants
 {
     public static class ServiceConfig
     {
-        public const string PlaceholderSmoSystemName = "SmoSystemName";
-        public const string ListMethodName = "ListMethodName";
-        public const string PlaceholderPropertyName = "PlaceholderPropertyName";
-        public const string AdoNetPropertyName = "AdoNetPropertyName";
-        public const string DelimitedInputIDs = "DelimitedInputIDs";
-        public const string PlaceholderWrapper = "Placeholder Wrapper - e.g. %text%";
+        public const string PlaceholderSmoSystemName = "Smo System Name (Dynamic Placeholders)";
+        public const string ListMethodName = "Smo List Method Name";
+        public const string PlaceholderPropertyName = "Dynamic Placeholder Property Name";
+        public const string AdoNetPropertyName = "Ado.Net Property Name";
+        public const string DelimitedInputIDs = "Input Parameters for Dynamic ADO.NET queries, delimited with (;)";
+        public const string StaticPlaceholders = "Static Placeholders, delimited with (;)";
+        public const string PlaceholderWrapperSymbol = "Placeholder Wrapper in the Email Body/Subject - e.g. %text%";
     }
 }

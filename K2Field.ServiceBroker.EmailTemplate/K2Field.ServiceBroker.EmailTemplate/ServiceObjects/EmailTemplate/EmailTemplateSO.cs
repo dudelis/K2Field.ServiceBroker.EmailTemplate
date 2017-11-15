@@ -31,7 +31,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
         public EmailTemplateSO(EmailTemplateServiceBroker broker) : base(broker)
         {
             _placeholders = new PlaceholderItemCollection();
-            _placeholders.Wrapper = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderWrapper].ToString();
+            _placeholders.Wrapper = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderWrapperSymbol].ToString();
             _inputIds = new Dictionary<string, string>();
             
         }
@@ -53,9 +53,14 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailSubject);
             mGetEmailTemplate.ReturnProperties.Add(Constants.Properties.OutputEmailBody);
             mGetEmailTemplate.ReturnProperties.Add(Constants.Properties.OutputEmailSubject);
-            mGetEmailTemplate.MethodParameters = Helper.GetMethodParamaters(GetInputIds());
-            so.Methods.Add(mGetEmailTemplate);
+            mGetEmailTemplate.MethodParameters = Helper.GetMethodParamaters(GetInputIds(), MethodParameterType.Dynamic);
+            MethodParameters staticParams = Helper.GetMethodParamaters(GetStaticPlaceholders(), MethodParameterType.Static);
+            foreach (var param in staticParams)
+            {
+                mGetEmailTemplate.MethodParameters.Create(param);
+            }
 
+            so.Methods.Add(mGetEmailTemplate);
             return new List<ServiceObject> {so};
             
         }
@@ -86,28 +91,34 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             {
                 _inputIds.Add(idName, GetStringParameter(idName));
             }
-            
 
-            SmartObjectClientServer smoServer = ServiceBroker.K2Connection.GetConnection<SmartObjectClientServer>();
-            using (smoServer.Connection)
+            if (!string.IsNullOrEmpty(_pSmoSystemName))
             {
-                var smo = smoServer.GetSmartObject(_pSmoSystemName);
-                smo.MethodToExecute = _pSmoListName;
-                var dt = smoServer.ExecuteListDataTable(smo);
-                //Getting only the placholders, which are used in the EmailSubject/EmailBody
-                foreach (DataRow row in dt.Rows)
+                SmartObjectClientServer smoServer = ServiceBroker.K2Connection.GetConnection<SmartObjectClientServer>();
+                using (smoServer.Connection)
                 {
-                    var placeholder = _placeholders.Wrapper + row[_pNameProperty] + _placeholders.Wrapper;
-                    if (_inputSubject.Contains(placeholder) || _inputBody.Contains(placeholder))
+                    var smo = smoServer.GetSmartObject(_pSmoSystemName);
+                    smo.MethodToExecute = _pSmoListName;
+                    var dt = smoServer.ExecuteListDataTable(smo);
+                    //Getting only the placholders, which are used in the EmailSubject/EmailBody
+                    foreach (DataRow row in dt.Rows)
                     {
-                        _placeholders.AddItem(row[_pNameProperty].ToString(), row[_pAdoNetProperty].ToString());
+                        var placeholder = _placeholders.Wrapper + row[_pNameProperty] + _placeholders.Wrapper;
+                        if (_inputSubject.Contains(placeholder) || _inputBody.Contains(placeholder))
+                        {
+                            _placeholders.AddItem(row[_pNameProperty].ToString(), row[_pAdoNetProperty].ToString());
+                        }
                     }
+                    //Getting the values of the placeholders
+                    _placeholders.GetAllValues(smoServer, _inputIds);
                 }
-                //Getting the values of the placeholders
-                _placeholders.GetAllValues(smoServer, _inputIds);
+            }
+            //Adding static placeholders
+            foreach (var item in GetStaticPlaceholders())
+            {
+                _placeholders.AddItemWithValue(item, GetStringParameter(item));
             }
             //Replacing all the values
-            
             var outputSubject = _placeholders.ReplacePlaceholders(_inputSubject);
             var outputBody = _placeholders.ReplacePlaceholders(_inputBody);
 

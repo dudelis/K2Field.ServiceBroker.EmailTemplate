@@ -27,6 +27,15 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             };
             Items.Add(item);
         }
+        public void AddItemWithValue(string name, string value)
+        {
+            var item = new PlaceholderItem()
+            {
+                Name = name,
+                Value = value
+            };
+            Items.Add(item);
+        }
         public void GetAllValues(SmartObjectClientServer smoServer, Dictionary<string, string> inputIds)
         {
             foreach (var p in Items)
@@ -50,12 +59,12 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
         }
         public string ReplacePlaceholders(string input)
         {
-            var output = string.Empty;
+            var output = input;
             if (string.IsNullOrEmpty(input)) return output;
             foreach (var item in Items)
             {
                 var placeholder = Wrapper + item.Name + Wrapper;
-                output = input.Replace(placeholder, item.Value);
+                output = output.Replace(placeholder, item.Value);
             }
             return output;
         }

@@ -31,7 +31,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.Helpers
             };
             return m;
         }
-        public static MethodParameter CreateParameter(string name, SoType soType, bool isRequired, string description)
+        public static MethodParameter CreateParameter(string name, SoType soType, bool isRequired, MethodParameterType type)
         {
             MethodParameter methodParam = new MethodParameter
             {
@@ -39,21 +39,21 @@ namespace K2Field.ServiceBroker.EmailTemplate.Helpers
                 IsRequired = isRequired,
                 MetaData = new MetaData
                 {
-                    Description = description,
+                    Description = type.ToString(),
                     DisplayName = name
                 },
                 SoType = soType,
-                Type = Convert.ToString(soType)
+                Type = MapHelper.GetTypeBySoType(soType)
             };
             return methodParam;
         }
-        public static MethodParameters GetMethodParamaters(List<string> inputIds)
+        public static MethodParameters GetMethodParamaters(List<string> inputIds, MethodParameterType type)
         {
             MethodParameters paramCollection = new MethodParameters();
             if (inputIds.Count == 0) return paramCollection;
             foreach (var param in inputIds)
             {
-                paramCollection.Create(CreateParameter(param, SoType.Text, false, param));
+                paramCollection.Create(CreateParameter(param, SoType.Text, false, type));
             }
             return paramCollection;
         }

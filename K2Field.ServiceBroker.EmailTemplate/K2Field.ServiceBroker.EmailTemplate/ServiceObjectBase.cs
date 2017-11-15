@@ -38,6 +38,15 @@ namespace K2Field.ServiceBroker.EmailTemplate
             
             return l;
         }
+        protected List<string> GetStaticPlaceholders()
+        {
+            var delimitedItems =
+                ServiceBroker.Service.ServiceConfiguration[ServiceConfig.StaticPlaceholders] as string;
+
+            var l = delimitedItems.Split(';').Select(x => x).ToList();
+
+            return l;
+        }
         protected string GetStringProperty(string name, bool isRequired = false)
         {
             var p = ServiceBroker.Service.ServiceObjects[0].Properties[name];
