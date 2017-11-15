@@ -2,7 +2,11 @@
 
 ## Introduction
 
-The current Service Broker provides functionality to enable Email Templating inside K2 Worklfows. The idea of the Broker is to change Email/Task Notifications inside the workflow without the necessity to redeploy the workflows.
+The current Service Broker provides functionality to enable dynamic Email Templating inside K2 Worklfows. The idea of the Broker is to change Email/Task Notifications inside the workflow without the necessity to redeploy them. There are 2 options how the placeholders in the Email Subject/Body can be replaced with values at runtime:
+- via static values, mapped during the workflow design;
+- via dynamic list of placeholders/parameters, obtained from the mapped SmartObject, accompanied by the ADO.NET queries, which are carried out at runtime.
+
+For more details and detailed instruction on how to configure it, please, refer to the documentation below.
 
 ## Documentation
 To be defined
