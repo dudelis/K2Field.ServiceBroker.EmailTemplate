@@ -1,3 +1,5 @@
+[<img src="https://k2-konstantin.visualstudio.com/_apis/public/build/definitions/dd460ed5-13c0-4ae1-a98f-a97b6955e631/3/badge"/>](https://k2-konstantin.visualstudio.com/EmailTemplate/_build/index?definitionId=3)
+
 # Email Template ServiceBroker
 
 ## Introduction
