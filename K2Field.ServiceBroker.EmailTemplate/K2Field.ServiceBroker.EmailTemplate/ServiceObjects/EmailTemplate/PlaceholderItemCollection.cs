@@ -18,6 +18,14 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
         {
             Items = new List<PlaceholderItem>();
         }
+        public void AddItem(string name)
+        {
+            var item = new PlaceholderItem()
+            {
+                Name = name
+            };
+            Items.Add(item);
+        }
         public void AddItem(string name, string adoQuery)
         {
             var item = new PlaceholderItem()

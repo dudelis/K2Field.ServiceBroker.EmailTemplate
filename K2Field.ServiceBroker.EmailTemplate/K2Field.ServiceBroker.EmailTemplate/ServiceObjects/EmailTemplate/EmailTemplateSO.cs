@@ -19,8 +19,6 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 {
     public class EmailTemplateSO : ServiceObjectBase
     {
-        private string _inputSubject;
-        private string _inputBody;
         private PlaceholderItemCollection _placeholders;
         private Dictionary<string, string> _inputIds; 
         private string _pSmoSystemName;
@@ -33,7 +31,12 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             _placeholders = new PlaceholderItemCollection();
             _placeholders.Wrapper = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderWrapperSymbol].ToString();
             _inputIds = new Dictionary<string, string>();
-            
+            _pSmoSystemName =
+                ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderSmoSystemName].ToString();
+            _pSmoListName = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.ListMethodName].ToString();
+            _pNameProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderPropertyName].ToString();
+            _pAdoNetProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.AdoNetPropertyName].ToString();
+
         }
         public override List<ServiceObject> DescribeServiceObjects()
         {
@@ -47,8 +50,9 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.InputEmailBody, "Input body of the email", SoType.Memo));
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.OutputEmailBody, "Output body of the email", SoType.Memo));
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.OutputEmailSubject, "Output body of the email", SoType.Memo));
+            so.Properties.Add(Helper.CreateProperty(Constants.Properties.Placeholder, "Placeholder", SoType.Text));
 
-            Method mGetEmailTemplate = Helper.CreateMethod(Constants.Methods.GetEmailTemplate, "Returns the Email Template with changed placholders", MethodType.Execute);
+            var mGetEmailTemplate = Helper.CreateMethod(Constants.Methods.GetEmailTemplate, "Returns the Email Template with changed placholders", MethodType.Execute);
             mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailBody);
             mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailSubject);
             mGetEmailTemplate.ReturnProperties.Add(Constants.Properties.OutputEmailBody);
@@ -59,8 +63,11 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             {
                 mGetEmailTemplate.MethodParameters.Create(param);
             }
-
             so.Methods.Add(mGetEmailTemplate);
+
+            var mListPlaceholders = Helper.CreateMethod(Constants.Methods.ListPlaceholders, "Returns a list of all placeholders", MethodType.List);
+            mListPlaceholders.ReturnProperties.Add(Constants.Properties.Placeholder);
+            so.Methods.Add(mListPlaceholders);
             return new List<ServiceObject> {so};
             
         }
@@ -72,6 +79,9 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
                 case Constants.Methods.GetEmailTemplate:
                     GetEmailTemplate();
                     break;
+                case Constants.Methods.ListPlaceholders:
+                    ListPlaceholders();
+                    break;
                 default:
                     throw new NotImplementedException();
             }
@@ -80,13 +90,9 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
         private void GetEmailTemplate()
         {
             //Getting all the ServiceConfig and Input properties
-            _inputSubject = GetStringProperty(Constants.Properties.InputEmailSubject) ?? string.Empty;
-            _inputBody = GetStringProperty(Constants.Properties.InputEmailBody) ?? string.Empty;
-            _pSmoSystemName =
-                ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderSmoSystemName].ToString();
-            _pSmoListName = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.ListMethodName].ToString();
-            _pNameProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderPropertyName].ToString();
-            _pAdoNetProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.AdoNetPropertyName].ToString();
+            var _inputSubject = GetStringProperty(Constants.Properties.InputEmailSubject) ?? string.Empty;
+            var _inputBody = GetStringProperty(Constants.Properties.InputEmailBody) ?? string.Empty;
+            
             foreach ( var idName in GetInputIds())
             {
                 _inputIds.Add(idName, GetStringParameter(idName));
@@ -129,6 +135,39 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             dr[Constants.Properties.OutputEmailBody] = outputBody;
             dr[Constants.Properties.OutputEmailSubject] = outputSubject;
             results.Rows.Add(dr);
+        }
+
+        private void ListPlaceholders()
+        {
+            //Adding dynamic placeholders
+            if (!string.IsNullOrEmpty(_pSmoSystemName))
+            {
+                SmartObjectClientServer smoServer = ServiceBroker.K2Connection.GetConnection<SmartObjectClientServer>();
+                using (smoServer.Connection)
+                {
+                    var smo = smoServer.GetSmartObject(_pSmoSystemName);
+                    smo.MethodToExecute = _pSmoListName;
+                    var dt = smoServer.ExecuteListDataTable(smo);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        _placeholders.AddItem(row[_pNameProperty].ToString());
+                    }
+                }
+            }
+            //Adding static placeholders
+            //Adding static placeholders
+            foreach (var item in GetStaticPlaceholders())
+            {
+                _placeholders.AddItem(item);
+            }
+            ServiceBroker.Service.ServiceObjects[0].Properties.InitResultTable();
+            DataTable results = ServiceBroker.ServicePackage.ResultTable;
+            foreach (var item in _placeholders.Items)
+            {
+                DataRow dr = results.NewRow();
+                dr[Constants.Properties.Placeholder] = item.Name;
+                results.Rows.Add(dr);
+            }
         }
     }
 }
