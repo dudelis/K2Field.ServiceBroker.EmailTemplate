@@ -9,5 +9,6 @@ namespace K2Field.ServiceBroker.EmailTemplate.Constants
     public static class Methods
     {
         public const string GetEmailTemplate = "GetEmailTemplate";
+        public const string ListPlaceholders = "ListPlaceholders";
     }
 }
