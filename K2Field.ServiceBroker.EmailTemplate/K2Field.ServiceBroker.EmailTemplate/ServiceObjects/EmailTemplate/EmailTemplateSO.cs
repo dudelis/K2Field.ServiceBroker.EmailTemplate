@@ -53,7 +53,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.OutputEmailBody, "Output body of the email", SoType.Memo));
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.OutputEmailSubject, "Output body of the email", SoType.Memo));
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.Placeholder, "Placeholder", SoType.Text));
-            so.Properties.Add(Helper.CreateProperty(Constants.Properties.Placeholder, "Placeholder with Wrapper", SoType.Text));
+            so.Properties.Add(Helper.CreateProperty(Constants.Properties.PlaceholderWithWrapper, "Placeholder with Wrapper", SoType.Text));
 
             var mGetEmailTemplate = Helper.CreateMethod(Constants.Methods.GetEmailTemplate, "Returns the Email Template with changed placholders", MethodType.Execute);
             mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailBody);
