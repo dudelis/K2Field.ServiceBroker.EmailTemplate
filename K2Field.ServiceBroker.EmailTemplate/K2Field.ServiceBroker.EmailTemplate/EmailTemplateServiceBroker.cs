@@ -35,7 +35,8 @@ namespace K2Field.ServiceBroker.EmailTemplate
             Service.ServiceConfiguration.Add(ServiceConfig.ListMethodName, true, "List");
             Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderPropertyName, true, "Placeholder");
             Service.ServiceConfiguration.Add(ServiceConfig.AdoNetPropertyName, true, "AdoNetQuery");
-            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderWrapperSymbol, true, "%");
+            Service.ServiceConfiguration.Add(ServiceConfig.ReturnProperty, true, "ReturnProperty");
+            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderWrapperSymbol, true, "$");
             Service.ServiceConfiguration.Add(ServiceConfig.StaticPlaceholders, false, "WorklistItemLink;MainpageUrl");
             return base.GetConfigSection();
         }

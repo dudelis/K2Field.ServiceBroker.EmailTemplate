@@ -28,8 +28,10 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 
         public EmailTemplateSO(EmailTemplateServiceBroker broker) : base(broker)
         {
-            _placeholders = new PlaceholderItemCollection();
-            _placeholders.Wrapper = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderWrapperSymbol].ToString();
+            _placeholders = new PlaceholderItemCollection()
+            {
+                Wrapper = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderWrapperSymbol].ToString()
+            };
             _inputIds = new Dictionary<string, string>();
             _pSmoSystemName =
                 ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderSmoSystemName].ToString();
@@ -51,6 +53,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.OutputEmailBody, "Output body of the email", SoType.Memo));
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.OutputEmailSubject, "Output body of the email", SoType.Memo));
             so.Properties.Add(Helper.CreateProperty(Constants.Properties.Placeholder, "Placeholder", SoType.Text));
+            so.Properties.Add(Helper.CreateProperty(Constants.Properties.Placeholder, "Placeholder with Wrapper", SoType.Text));
 
             var mGetEmailTemplate = Helper.CreateMethod(Constants.Methods.GetEmailTemplate, "Returns the Email Template with changed placholders", MethodType.Execute);
             mGetEmailTemplate.InputProperties.Add(Constants.Properties.InputEmailBody);
@@ -67,6 +70,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 
             var mListPlaceholders = Helper.CreateMethod(Constants.Methods.ListPlaceholders, "Returns a list of all placeholders", MethodType.List);
             mListPlaceholders.ReturnProperties.Add(Constants.Properties.Placeholder);
+            mListPlaceholders.ReturnProperties.Add(Constants.Properties.PlaceholderWithWrapper);
             so.Methods.Add(mListPlaceholders);
             return new List<ServiceObject> {so};
             
@@ -166,6 +170,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             {
                 DataRow dr = results.NewRow();
                 dr[Constants.Properties.Placeholder] = item.Name;
+                dr[Constants.Properties.PlaceholderWithWrapper] = _placeholders.Wrapper + item.Name + _placeholders.Wrapper;
                 results.Rows.Add(dr);
             }
         }
