@@ -11,5 +11,6 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
         public string Name;
         public string AdoQuery;
         public string Value;
+        public string ReturnProperty;
     }
 }

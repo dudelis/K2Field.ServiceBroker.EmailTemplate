@@ -21,10 +21,11 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
     {
         private PlaceholderItemCollection _placeholders;
         private Dictionary<string, string> _inputIds; 
-        private string _pSmoSystemName;
-        private string _pSmoListName;
-        private string _pNameProperty;
-        private string _pAdoNetProperty;
+        private readonly string _pSmoSystemName;
+        private readonly string _pSmoListName;
+        private readonly string _pNameProperty;
+        private readonly string _pAdoNetProperty;
+        private readonly string _pReturnProperty;
 
         public EmailTemplateSO(EmailTemplateServiceBroker broker) : base(broker)
         {
@@ -38,6 +39,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             _pSmoListName = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.ListMethodName].ToString();
             _pNameProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.PlaceholderPropertyName].ToString();
             _pAdoNetProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.AdoNetPropertyName].ToString();
+            _pReturnProperty = ServiceBroker.Service.ServiceConfiguration[ServiceConfig.ReturnProperty].ToString();
 
         }
         public override List<ServiceObject> DescribeServiceObjects()
@@ -104,24 +106,26 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 
             if (!string.IsNullOrEmpty(_pSmoSystemName))
             {
+
                 SmartObjectClientServer smoServer = ServiceBroker.K2Connection.GetConnection<SmartObjectClientServer>();
                 using (smoServer.Connection)
                 {
                     var smo = smoServer.GetSmartObject(_pSmoSystemName);
                     smo.MethodToExecute = _pSmoListName;
                     var dt = smoServer.ExecuteListDataTable(smo);
-                    //Getting only the placholders, which are used in the EmailSubject/EmailBody
                     foreach (DataRow row in dt.Rows)
                     {
                         var placeholder = _placeholders.Wrapper + row[_pNameProperty] + _placeholders.Wrapper;
+                        //Getting only the placholders, which are used in the EmailSubject/EmailBody
                         if (_inputSubject.Contains(placeholder) || _inputBody.Contains(placeholder))
                         {
-                            _placeholders.AddItem(row[_pNameProperty].ToString(), row[_pAdoNetProperty].ToString());
+                            _placeholders.AddItem(row[_pNameProperty].ToString(), row[_pAdoNetProperty].ToString(), row[_pReturnProperty].ToString());
                         }
                     }
-                    //Getting the values of the placeholders
-                    _placeholders.GetAllValues(smoServer, _inputIds);
                 }
+                //Getting the values of the placeholders
+                _placeholders.GetAllValues(_inputIds, ServiceBroker.K2Connection.SessionConnectionString);
+                
             }
             //Adding static placeholders
             foreach (var item in GetStaticPlaceholders())
