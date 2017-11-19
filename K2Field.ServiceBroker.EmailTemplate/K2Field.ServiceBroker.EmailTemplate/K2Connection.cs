@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using SourceCode.Data.SmartObjectsClient;
 using SourceCode.Hosting.Client.BaseAPI;
 using SourceCode.Hosting.Server.Interfaces;
 using SourceCode.Workflow.Client;
@@ -18,34 +19,14 @@ namespace K2Field.ServiceBroker.EmailTemplate
         public string SessionConnectionString => _sessionConnectionString;
         
         public ISessionManager SessionManager => _sessionManager;
-        
+        public string UserName { get; set; }
+
         public K2Connection(IServiceMarshalling serviceMarshalling, IServerMarshaling serverMarshaling)
         {
             _sessionManager = serverMarshaling.GetSessionManagerContext();
             var sessionCookie = SessionManager.CurrentSessionCookie;
             _sessionConnectionString = EmailTemplateServiceBroker.SecurityManager.GetSessionConnectionString(sessionCookie);
         }
-
-
-
-        public string UserName { get; set; }
-
-        //private ConnectionSetup SessionWorkflowConnectionSetup
-        //{
-        //    get
-        //    {
-        //        if (sessionWorkflowConnectionSetup == null && !string.IsNullOrEmpty(this.SessionConnectionString) && _workflowServerPort != 0)
-        //        {
-        //            sessionWorkflowConnectionSetup = new ConnectionSetup();
-        //            sessionWorkflowConnectionSetup.ParseConnectionString(this.SessionConnectionString);
-        //            sessionWorkflowConnectionSetup.ConnectionParameters[SourceCode.Workflow.Client.ConnectionSetup.ParamKeys.Port] = _workflowServerPort.ToString();
-        //            sessionWorkflowConnectionSetup.ConnectionParameters.Remove(SourceCode.Workflow.Client.ConnectionSetup.ParamKeys.ConnectionString);
-        //        }
-
-        //        return sessionWorkflowConnectionSetup;
-        //    }
-        //}
-
         public T GetConnection<T>() where T : BaseAPI, new()
         {
             var server = new T();
@@ -54,26 +35,15 @@ namespace K2Field.ServiceBroker.EmailTemplate
             return server;
         }
 
-
-
-        //public Connection GetWorkflowClientConnection()
-        //{
-        //    Connection connection = new Connection();
-
-        //    try
-        //    {
-        //        connection.Open(SessionWorkflowConnectionSetup);
-        //        return connection;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (connection != null)
-        //        {
-        //            connection.Dispose();
-        //        }
-
-        //        throw new Exception("Failed to create Connection to K2.", ex);
-        //    }
-        //}
+        public string GetSOConnectionString()
+        {
+            SCConnectionStringBuilder scConStr = new SCConnectionStringBuilder(_sessionConnectionString);
+            SOConnectionStringBuilder soConStr = new SOConnectionStringBuilder()
+            {
+                Server = scConStr.Host,
+                Port = Convert.ToInt32(scConStr.Port)
+            };
+            return soConStr.ConnectionString;
+        }
     }
 }

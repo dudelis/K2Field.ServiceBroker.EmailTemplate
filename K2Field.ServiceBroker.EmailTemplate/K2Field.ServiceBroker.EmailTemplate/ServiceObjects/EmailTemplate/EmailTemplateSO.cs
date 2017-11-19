@@ -124,7 +124,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
                     }
                 }
                 //Getting the values of the placeholders
-                _placeholders.GetAllValues(_inputIds, ServiceBroker.K2Connection.SessionConnectionString);
+                _placeholders.GetAllValues(_inputIds, ServiceBroker);
                 
             }
             //Adding static placeholders
