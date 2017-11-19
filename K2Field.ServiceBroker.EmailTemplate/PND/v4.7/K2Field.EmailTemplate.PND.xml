@@ -18,27 +18,27 @@
         <resolve name="Field" namespace="urn:SourceCode/EnvironmentSettings" action="Default" />
       </defaultOptions>
       <specificOptions>
-        <resolve name="Form" namespace="urn:SourceCode/Categories?Form#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Default" />
-        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/Categories?K2Field%2EServiceBroker%2EEmailTemplate#Path.%2F" action="Default" />
-        <resolve name="SMO" namespace="urn:SourceCode/Categories?SMO#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Default" />
-        <resolve name="Test" namespace="urn:SourceCode/Categories?Test#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2FSMO%2F" action="Default" />
-        <resolve name="View" namespace="urn:SourceCode/Categories?View#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Default" />
+        <resolve name="Form" namespace="urn:SourceCode/Categories?Form#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Deploy" />
+        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/Categories?K2Field%2EServiceBroker%2EEmailTemplate#Path.%2F" action="Deploy" />
+        <resolve name="SMO" namespace="urn:SourceCode/Categories?SMO#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Deploy" />
+        <resolve name="Test" namespace="urn:SourceCode/Categories?Test#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2FSMO%2F" action="Deploy" />
+        <resolve name="View" namespace="urn:SourceCode/Categories?View#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Deploy" />
         <resolve name="From Address" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
         <resolve name="Mail Server" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
         <resolve name="SmartForms Runtime SSL" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
         <resolve name="SmartObject Server" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
-        <resolve name="K2Field.EmailTemplate.Form.Main" namespace="urn:SourceCode/SmartForms/Form" action="Default" />
-        <resolve name="K2Field.EmailTemplate.ViewItem.EditTemplate" namespace="urn:SourceCode/SmartForms/View" action="Default" />
-        <resolve name="K2Field.EmailTemplate.ViewList.Placeholders" namespace="urn:SourceCode/SmartForms/View" action="Default" />
-        <resolve name="K2Field.EmailTemplate.ViewList.Templates" namespace="urn:SourceCode/SmartForms/View" action="Default" />
-        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/SmartObjects/ServiceInstance" action="UseExisting" />
+        <resolve name="K2Field.EmailTemplate.Form.Main" namespace="urn:SourceCode/SmartForms/Form" action="Deploy" />
+        <resolve name="K2Field.EmailTemplate.ViewItem.EditTemplate" namespace="urn:SourceCode/SmartForms/View" action="Deploy" />
+        <resolve name="K2Field.EmailTemplate.ViewList.Placeholders" namespace="urn:SourceCode/SmartForms/View" action="Deploy" />
+        <resolve name="K2Field.EmailTemplate.ViewList.Templates" namespace="urn:SourceCode/SmartForms/View" action="Deploy" />
+        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/SmartObjects/ServiceInstance" action="Deploy" />
         <resolve name="URMService" namespace="urn:SourceCode/SmartObjects/ServiceInstance" action="UseExisting" />
-        <resolve name="K2Field_EmailTemplate_SMO_EmailTemplateConverter" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
-        <resolve name="K2Field_EmailTemplate_SMO_Placeholders" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
-        <resolve name="K2Field_EmailTemplate_SMO_Templates" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
-        <resolve name="K2Field_EmailTemplate_SMO_URM_Role" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
-        <resolve name="K2Field_EmailTemplate_SMO_URM_User" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
-        <resolve name="Email Template Test\Test-EmailTempate" namespace="urn:SourceCode/Workflows" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_EmailTemplateConverter" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
+        <resolve name="K2Field_EmailTemplate_SMO_Placeholders" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
+        <resolve name="K2Field_EmailTemplate_SMO_Templates" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
+        <resolve name="K2Field_EmailTemplate_SMO_URM_Role" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
+        <resolve name="K2Field_EmailTemplate_SMO_URM_User" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
+        <resolve name="Email Template Test\Test-EmailTempate" namespace="urn:SourceCode/Workflows" action="Deploy" />
       </specificOptions>
       <referenceOptions>
         <rebind id="26" name="Process" baseType="Object" action="Default" targetName="" />

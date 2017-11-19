@@ -95,4 +95,11 @@ Function RegisterServiceType([string]$ServiceTypeDLL, [guid]$guid, [string]$syst
     write-host "Deployed service-type"
 }
 
+Function DeployPackage ([string]$PackageName, [string]$XmlName, [string]$serverName = "localhost", [int]$port=5555){
+	Add-PSSnapin SourceCode.Deployment.PowerShell
+	$k2ConnectionString = GetK2ConnectionString -k2Server $k2Server -port $port;
+	Deploy-Package -FileName "$PSScriptRoot\$PackageName" -ConfigFile "$PSScriptRoot\$XmlName" -ConnectionString $k2ConnectionString
+
+}
+
 Export-ModuleMember -Function StartK2Service, StopK2Service, GetK2InstallPath, RegisterServiceType, GetK2VersionNumber
