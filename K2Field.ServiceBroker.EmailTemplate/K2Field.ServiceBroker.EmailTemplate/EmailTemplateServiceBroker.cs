@@ -31,11 +31,12 @@ namespace K2Field.ServiceBroker.EmailTemplate
         public override string GetConfigSection()
         {
             Service.ServiceConfiguration.Add(ServiceConfig.DelimitedInputIDs, true, "Id1;Id2");
-            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderSmoSystemName, true, "SmoSystemName");
-            Service.ServiceConfiguration.Add(ServiceConfig.ListMethodName, true, "List");
+            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderSmoSystemName, true, "K2Field_EmailTemplate_SMO_Placeholders");
+            Service.ServiceConfiguration.Add(ServiceConfig.ListMethodName, true, "GetList");
             Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderPropertyName, true, "Placeholder");
             Service.ServiceConfiguration.Add(ServiceConfig.AdoNetPropertyName, true, "AdoNetQuery");
-            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderWrapperSymbol, true, "%");
+            Service.ServiceConfiguration.Add(ServiceConfig.ReturnProperty, true, "ReturnProperty");
+            Service.ServiceConfiguration.Add(ServiceConfig.PlaceholderWrapperSymbol, true, "$");
             Service.ServiceConfiguration.Add(ServiceConfig.StaticPlaceholders, false, "WorklistItemLink;MainpageUrl");
             return base.GetConfigSection();
         }
@@ -43,7 +44,7 @@ namespace K2Field.ServiceBroker.EmailTemplate
         public override string DescribeSchema()
         {
             Service.Name = "K2Field.ServiceBroker.EmailTemplate";
-            Service.MetaData.DisplayName = "Email Templating";
+            Service.MetaData.DisplayName = "K2Field_ServiceBroker_EmailTemplate";
             Service.MetaData.Description = "A Service Broker that provides email templating functionality for the various functional service objects that aid the implementation of a K2 project.";
 
             bool requireServiceFolders = false;

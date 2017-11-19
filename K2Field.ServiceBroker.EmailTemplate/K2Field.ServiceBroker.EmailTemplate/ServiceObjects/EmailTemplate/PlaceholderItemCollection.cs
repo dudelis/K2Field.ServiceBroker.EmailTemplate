@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using K2Field.ServiceBroker.EmailTemplate.Properties;
+using SourceCode.Data.SmartObjectsClient;
 using SourceCode.SmartObjects.Client;
 
 namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
@@ -26,12 +27,13 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             };
             Items.Add(item);
         }
-        public void AddItem(string name, string adoQuery)
+        public void AddItem(string name, string adoQuery, string returnProperty)
         {
             var item = new PlaceholderItem()
             {
                 Name = name,
-                AdoQuery = adoQuery
+                AdoQuery = adoQuery,
+                ReturnProperty = returnProperty
             };
             Items.Add(item);
         }
@@ -44,7 +46,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             };
             Items.Add(item);
         }
-        public void GetAllValues(SmartObjectClientServer smoServer, Dictionary<string, string> inputIds)
+        public void GetAllValues(Dictionary<string, string> inputIds, string connectionString)
         {
             foreach (var p in Items)
             {
@@ -55,13 +57,19 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
                 }
                 foreach (var item in inputIds)
                 {
-                    var searchValue = "@" + item.Key;
+                    var searchValue = Wrapper + item.Key + Wrapper;
                     query = query.Replace(searchValue, item.Value);
                 }
-                DataTable results = smoServer.ExecuteSQLQueryDataTable(query);
-                if (results.Rows.Count > 0)
+                DataTable dt = new DataTable();
+                using (SOConnection soConnection = new SOConnection(connectionString))
+                using (SOCommand soCommand = new SOCommand(query, soConnection))
+                using (SODataAdapter soDataAdapter = new SODataAdapter(soCommand))
                 {
-                    p.Value = results.Rows[0][0].ToString();
+                    soDataAdapter.Fill(dt);
+                }
+                if (dt.Rows.Count > 0)
+                {
+                    p.Value = dt.Rows[0][p.ReturnProperty].ToString();
                 }
             }
         }

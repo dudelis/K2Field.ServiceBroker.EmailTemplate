@@ -13,5 +13,6 @@ namespace K2Field.ServiceBroker.EmailTemplate.Constants
         public const string OutputEmailBody = "OutputEmailBody";
         public const string OutputEmailSubject = "OutputEmailSubject";
         public const string Placeholder = "Placeholder";
+        public const string PlaceholderWithWrapper = "PlaceholderWithWrapper";
     }
 }
