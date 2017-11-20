@@ -18,64 +18,64 @@
         <resolve name="Field" namespace="urn:SourceCode/EnvironmentSettings" action="Default" />
       </defaultOptions>
       <specificOptions>
-        <resolve name="Form" namespace="urn:SourceCode/Categories?Form#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Deploy" />
-        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/Categories?K2Field%2EServiceBroker%2EEmailTemplate#Path.%2F" action="Deploy" />
-        <resolve name="SMO" namespace="urn:SourceCode/Categories?SMO#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Deploy" />
-        <resolve name="Test" namespace="urn:SourceCode/Categories?Test#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2FSMO%2F" action="Deploy" />
-        <resolve name="View" namespace="urn:SourceCode/Categories?View#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Deploy" />
+        <resolve name="Form" namespace="urn:SourceCode/Categories?Form#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Default" />
+        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/Categories?K2Field%2EServiceBroker%2EEmailTemplate#Path.%2F" action="Default" />
+        <resolve name="SMO" namespace="urn:SourceCode/Categories?SMO#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Default" />
+        <resolve name="Test" namespace="urn:SourceCode/Categories?Test#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2FSMO%2F" action="Default" />
+        <resolve name="View" namespace="urn:SourceCode/Categories?View#Path.%2FK2Field%2EServiceBroker%2EEmailTemplate%2F" action="Default" />
         <resolve name="From Address" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
         <resolve name="Mail Server" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
         <resolve name="SmartForms Runtime SSL" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
         <resolve name="SmartObject Server" namespace="urn:SourceCode/EnvironmentSettings/Fields" action="UseExisting" />
-        <resolve name="K2Field.EmailTemplate.Form.Main" namespace="urn:SourceCode/SmartForms/Form" action="Deploy" />
-        <resolve name="K2Field.EmailTemplate.ViewItem.EditTemplate" namespace="urn:SourceCode/SmartForms/View" action="Deploy" />
-        <resolve name="K2Field.EmailTemplate.ViewList.Placeholders" namespace="urn:SourceCode/SmartForms/View" action="Deploy" />
-        <resolve name="K2Field.EmailTemplate.ViewList.Templates" namespace="urn:SourceCode/SmartForms/View" action="Deploy" />
-        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/SmartObjects/ServiceInstance" action="Deploy" />
+        <resolve name="K2Field.EmailTemplate.Form.Main" namespace="urn:SourceCode/SmartForms/Form" action="Default" />
+        <resolve name="K2Field.EmailTemplate.ViewItem.EditTemplate" namespace="urn:SourceCode/SmartForms/View" action="Default" />
+        <resolve name="K2Field.EmailTemplate.ViewList.Placeholders" namespace="urn:SourceCode/SmartForms/View" action="Default" />
+        <resolve name="K2Field.EmailTemplate.ViewList.Templates" namespace="urn:SourceCode/SmartForms/View" action="Default" />
+        <resolve name="K2Field.ServiceBroker.EmailTemplate" namespace="urn:SourceCode/SmartObjects/ServiceInstance" action="UseExisting" />
         <resolve name="URMService" namespace="urn:SourceCode/SmartObjects/ServiceInstance" action="UseExisting" />
-        <resolve name="K2Field_EmailTemplate_SMO_EmailTemplateConverter" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
-        <resolve name="K2Field_EmailTemplate_SMO_Placeholders" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
-        <resolve name="K2Field_EmailTemplate_SMO_Templates" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
-        <resolve name="K2Field_EmailTemplate_SMO_URM_Role" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
-        <resolve name="K2Field_EmailTemplate_SMO_URM_User" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Deploy" />
-        <resolve name="Email Template Test\Test-EmailTempate" namespace="urn:SourceCode/Workflows" action="Deploy" />
+        <resolve name="K2Field_EmailTemplate_SMO_EmailTemplateConverter" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_Placeholders" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_Templates" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_URM_Role" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_URM_User" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
+        <resolve name="Email Template Test\Test-EmailTempate" namespace="urn:SourceCode/Workflows" action="Default" />
       </specificOptions>
       <referenceOptions>
-        <rebind id="26" name="Process" baseType="Object" action="Default" targetName="" />
-        <rebind id="34" name="EventItem" baseType="Object" action="Default" targetName="" />
-        <rebind id="39" name="ArtifactFieldPart" baseType="FieldPart" action="Default" targetName="" />
-        <rebind id="40" name="FieldPart" baseType="Object" action="Default" targetName="" />
-        <rebind id="67" name="SmartObjectFieldPart" baseType="FieldPart" action="Default" targetName="" />
-        <rebind id="95" name="Inputs" baseType="K2Field" action="Default" targetName="" />
-        <rebind id="99" name="PersistableObjectDictionaryEntry" baseType="K2Field" action="Default" targetName="" />
-        <rebind id="155" name="Returns" baseType="K2Field" action="Default" targetName="" />
-        <rebind id="308" name="StartRule" baseType="Object" action="Default" targetName="" />
-        <rebind id="491" name="K2Field.ServiceBroker.EmailTemplate" baseType="Service" action="Default" targetName="" />
-        <rebind id="601" name="SmartBoxService" baseType="SourceCode.SmartObjects.Services.SmartBox.SBService" action="Default" targetName="" />
-        <rebind id="1949" name="View" baseType="Control" action="Default" targetName="" />
-        <rebind id="1951" name="ToolbarTable" baseType="Control" action="Default" targetName="" />
-        <rebind id="1953" name="Section" baseType="Control" action="Default" targetName="" />
-        <rebind id="1955" name="Row" baseType="Control" action="Default" targetName="" />
-        <rebind id="1957" name="Cell" baseType="Control" action="Default" targetName="" />
-        <rebind id="1959" name="ListTable" baseType="Control" action="Default" targetName="" />
-        <rebind id="1961" name="Column" baseType="Control" action="Default" targetName="" />
-        <rebind id="1963" name="Label" baseType="Control" action="Default" targetName="" />
-        <rebind id="1965" name="DataLabel" baseType="Control" action="Default" targetName="" />
-        <rebind id="1967" name="TextBox" baseType="Control" action="Default" targetName="" />
-        <rebind id="1969" name="TextArea" baseType="Control" action="Default" targetName="" />
-        <rebind id="1971" name="ToolBarButton" baseType="Control" action="Default" targetName="" />
-        <rebind id="5702" name="Table" baseType="Control" action="Default" targetName="" />
-        <rebind id="5707" name="com_K2_System_Workflow_SmartObject_ProcessSet" baseType="SmartObject" action="Default" targetName="" />
-        <rebind id="5720" name="DropDown" baseType="Control" action="Default" targetName="" />
-        <rebind id="5723" name="com_K2_System_Workflow_SmartObject_Activity" baseType="SmartObject" action="Default" targetName="" />
-        <rebind id="5744" name="HTMLEditor" baseType="Control" action="Default" targetName="" />
-        <rebind id="5760" name="ListBox" baseType="Control" action="Default" targetName="" />
-        <rebind id="6347" name="SourceCode.SmartObjects.Services.UserRoleManagerService.URMService" baseType="Service" action="Default" targetName="" />
-        <rebind id="9278" name="Lithium" baseType="Theme" action="Default" targetName="" />
-        <rebind id="9280" name="Form" baseType="Control" action="Default" targetName="" />
-        <rebind id="9282" name="Panel" baseType="Control" action="Default" targetName="" />
-        <rebind id="9284" name="Area" baseType="Control" action="Default" targetName="" />
-        <rebind id="9286" name="AreaItem" baseType="Control" action="Default" targetName="" />
+        <rebind id="454" name="SourceCode.SmartObjects.Services.UserRoleManagerService.URMService" baseType="Service" action="Default" targetName="" />
+        <rebind id="3385" name="Lithium" baseType="Theme" action="Default" targetName="" />
+        <rebind id="3387" name="Form" baseType="Control" action="Default" targetName="" />
+        <rebind id="3389" name="Panel" baseType="Control" action="Default" targetName="" />
+        <rebind id="3391" name="Area" baseType="Control" action="Default" targetName="" />
+        <rebind id="3393" name="AreaItem" baseType="Control" action="Default" targetName="" />
+        <rebind id="4642" name="View" baseType="Control" action="Default" targetName="" />
+        <rebind id="4644" name="ToolbarTable" baseType="Control" action="Default" targetName="" />
+        <rebind id="4646" name="Section" baseType="Control" action="Default" targetName="" />
+        <rebind id="4648" name="Row" baseType="Control" action="Default" targetName="" />
+        <rebind id="4650" name="Cell" baseType="Control" action="Default" targetName="" />
+        <rebind id="4652" name="ListTable" baseType="Control" action="Default" targetName="" />
+        <rebind id="4654" name="Column" baseType="Control" action="Default" targetName="" />
+        <rebind id="4656" name="Label" baseType="Control" action="Default" targetName="" />
+        <rebind id="4658" name="DataLabel" baseType="Control" action="Default" targetName="" />
+        <rebind id="4660" name="TextBox" baseType="Control" action="Default" targetName="" />
+        <rebind id="4662" name="TextArea" baseType="Control" action="Default" targetName="" />
+        <rebind id="4664" name="ToolBarButton" baseType="Control" action="Default" targetName="" />
+        <rebind id="4822" name="SmartBoxService" baseType="SourceCode.SmartObjects.Services.SmartBox.SBService" action="Default" targetName="" />
+        <rebind id="8395" name="Table" baseType="Control" action="Default" targetName="" />
+        <rebind id="8400" name="com_K2_System_Workflow_SmartObject_ProcessSet" baseType="SmartObject" action="Default" targetName="" />
+        <rebind id="8413" name="DropDown" baseType="Control" action="Default" targetName="" />
+        <rebind id="8416" name="com_K2_System_Workflow_SmartObject_Activity" baseType="SmartObject" action="Default" targetName="" />
+        <rebind id="8437" name="HTMLEditor" baseType="Control" action="Default" targetName="" />
+        <rebind id="8453" name="ListBox" baseType="Control" action="Default" targetName="" />
+        <rebind id="8772" name="K2Field.ServiceBroker.EmailTemplate" baseType="Service" action="Default" targetName="" />
+        <rebind id="8889" name="Process" baseType="Object" action="Default" targetName="" />
+        <rebind id="8897" name="EventItem" baseType="Object" action="Default" targetName="" />
+        <rebind id="8902" name="ArtifactFieldPart" baseType="FieldPart" action="Default" targetName="" />
+        <rebind id="8903" name="FieldPart" baseType="Object" action="Default" targetName="" />
+        <rebind id="8930" name="SmartObjectFieldPart" baseType="FieldPart" action="Default" targetName="" />
+        <rebind id="8958" name="Inputs" baseType="K2Field" action="Default" targetName="" />
+        <rebind id="8962" name="PersistableObjectDictionaryEntry" baseType="K2Field" action="Default" targetName="" />
+        <rebind id="8999" name="Returns" baseType="K2Field" action="Default" targetName="" />
+        <rebind id="9171" name="StartRule" baseType="Object" action="Default" targetName="" />
       </referenceOptions>
     </resolveOptions>
   </package>
