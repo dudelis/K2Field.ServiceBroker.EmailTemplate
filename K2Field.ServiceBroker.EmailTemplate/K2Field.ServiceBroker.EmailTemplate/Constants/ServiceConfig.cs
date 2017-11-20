@@ -13,7 +13,7 @@ namespace K2Field.ServiceBroker.EmailTemplate.Constants
         public const string PlaceholderPropertyName = "SMO Placeholder Property Name";
         public const string AdoNetPropertyName = "SMO Ado.Net Property Name";
         public const string ReturnProperty = "SMO Return Property";
-        public const string DelimitedInputIDs = "ADO.NET query plaeholders, delimited with (;)";
+        public const string DelimitedInputIDs = "ADO.NET query placeholders, delimited with (;)";
         public const string StaticPlaceholders = "Static Placeholders, delimited with (;)";
         public const string PlaceholderWrapperSymbol = "Placeholder Wrapper Symbol";
     }
