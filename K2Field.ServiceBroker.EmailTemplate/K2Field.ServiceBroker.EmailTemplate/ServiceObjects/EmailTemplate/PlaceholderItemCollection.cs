@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using K2Field.ServiceBroker.EmailTemplate.Properties;
 using SourceCode.Data.SmartObjectsClient;
+using SourceCode.Hosting.Client.BaseAPI;
 using SourceCode.SmartObjects.Client;
+using SourceCode.SmartObjects.Services.ServiceSDK;
 
 namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
 {
@@ -46,30 +48,36 @@ namespace K2Field.ServiceBroker.EmailTemplate.ServiceObjects.EmailTemplate
             };
             Items.Add(item);
         }
-        public void GetAllValues(Dictionary<string, string> inputIds, string connectionString)
+        public void GetAllValues(Dictionary<string, string> inputIds, EmailTemplateServiceBroker sb)
         {
-            foreach (var p in Items)
+            if (Items.Count == 0) return;
+            using (SOConnection soConnection = new SOConnection(sb.K2Connection.GetSOConnectionString()))
             {
-                var query = p.AdoQuery;
-                if (query.ToLower().StartsWith("delete ") || query.ToLower().StartsWith("update "))
+                soConnection.DirectExecution = true;
+                soConnection.Open();
+                foreach (var p in Items)
                 {
-                    throw new ArgumentException(string.Format(Resources.QueryCannotStartDeleteUpdate, query));
-                }
-                foreach (var item in inputIds)
-                {
-                    var searchValue = Wrapper + item.Key + Wrapper;
-                    query = query.Replace(searchValue, item.Value);
-                }
-                DataTable dt = new DataTable();
-                using (SOConnection soConnection = new SOConnection(connectionString))
-                using (SOCommand soCommand = new SOCommand(query, soConnection))
-                using (SODataAdapter soDataAdapter = new SODataAdapter(soCommand))
-                {
-                    soDataAdapter.Fill(dt);
-                }
-                if (dt.Rows.Count > 0)
-                {
-                    p.Value = dt.Rows[0][p.ReturnProperty].ToString();
+                    var query = p.AdoQuery;
+                    if (query.ToLower().StartsWith("delete ") || query.ToLower().StartsWith("update "))
+                    {
+                        throw new ArgumentException(string.Format(Resources.QueryCannotStartDeleteUpdate, query));
+                    }
+                    foreach (var item in inputIds)
+                    {
+                        var searchValue = Wrapper + item.Key + Wrapper;
+                        query = query.Replace(searchValue, item.Value);
+                    }
+                    using (SOCommand soCommand = new SOCommand(query, soConnection))
+                    using (SODataReader soReader = soCommand.ExecuteReader(CommandBehavior.CloseConnection))
+                    {
+                        if (soReader.HasRows)
+                        {
+                            while (soReader.Read())
+                            {
+                                p.Value = soReader[p.ReturnProperty].ToString();
+                            }
+                        }
+                    }
                 }
             }
         }

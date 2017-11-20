@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K2Field.ServiceBroker.Email
 EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Installer", "Installer\Installer.pssproj", "{1D9360E7-87B5-4DBF-BCA1-EDB5342E5A8E}"
 EndProject
+Project("{D50D8A3F-5CE1-4E89-9491-F84FAB0E386A}") = "Email Template Test", "Email Template Test\Email Template Test.k2proj", "{32DF2145-F48A-40BF-83A9-93B7F01B54A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PND", "PND", "{0C095014-D650-4E56-AEB5-6631359E94AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "v4.7", "v4.7", "{19DD069B-5493-462C-A499-5E80EB396DCC}"
+	ProjectSection(SolutionItems) = preProject
+		PND\v4.7\K2Field.EmailTemplate.PND.kspx = PND\v4.7\K2Field.EmailTemplate.PND.kspx
+		PND\v4.7\K2Field.EmailTemplate.PND.xml = PND\v4.7\K2Field.EmailTemplate.PND.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +31,17 @@ Global
 		{1D9360E7-87B5-4DBF-BCA1-EDB5342E5A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D9360E7-87B5-4DBF-BCA1-EDB5342E5A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D9360E7-87B5-4DBF-BCA1-EDB5342E5A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32DF2145-F48A-40BF-83A9-93B7F01B54A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32DF2145-F48A-40BF-83A9-93B7F01B54A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32DF2145-F48A-40BF-83A9-93B7F01B54A3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{32DF2145-F48A-40BF-83A9-93B7F01B54A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32DF2145-F48A-40BF-83A9-93B7F01B54A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32DF2145-F48A-40BF-83A9-93B7F01B54A3}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{19DD069B-5493-462C-A499-5E80EB396DCC} = {0C095014-D650-4E56-AEB5-6631359E94AF}
 	EndGlobalSection
 EndGlobal

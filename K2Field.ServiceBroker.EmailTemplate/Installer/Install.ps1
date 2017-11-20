@@ -9,11 +9,17 @@ $brokerDescription = "The Email Template Service Broker. For more information, s
 $k2ServerName = "localhost"
 $port = 5555
 $targetPath = GetK2InstallPath -machine $k2ServerName
+$packageName = "K2Field.EmailTemplate.PND.kspx"
+$packageXml = "K2Field.EmailTemplate.PND.xml"
 
 StopK2Service
-Write-Host "Copying $brokerDLL to the ServiceBroker folder"
+Write-Host "`n `n Copying $brokerDLL to the ServiceBroker folder `n"
 Copy-Item "$PSScriptRoot\$brokerDLL" -Destination "$targetPath\ServiceBroker"
 StartK2Service
 
-Write-Host "Registering Service Type with name $displayName"
+Write-Host "`n `n Registering Service Type with name $displayName `n"
 RegisterServiceType -ServiceTypeDLL $brokerDLL -guid $guid -systemName $brokerSystemName -displayName $displayName -description $brokerDescription -k2server $k2ServerName -port $port
+
+Write-Host "`n `n Starting deployment of the package `n"
+DeployPackage -PackageName $packageName -XmlName $packageXml -k2server $k2ServerName -port $port
+Write-Host "`n Deployment of the package finished. You can check the deployment status in the log, created in the script folder.`n"
