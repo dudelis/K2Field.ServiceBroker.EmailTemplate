@@ -38,44 +38,46 @@
         <resolve name="K2Field_EmailTemplate_SMO_Templates" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
         <resolve name="K2Field_EmailTemplate_SMO_URM_Role" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
         <resolve name="K2Field_EmailTemplate_SMO_URM_User" namespace="urn:SourceCode/SmartObjects/SmartObject" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_Placeholders Data" namespace="urn:SourceCode/SmartObjects/SmartObjectData?K2Field_EmailTemplate_SMO_Placeholders" action="Default" />
+        <resolve name="K2Field_EmailTemplate_SMO_Templates Data" namespace="urn:SourceCode/SmartObjects/SmartObjectData?K2Field_EmailTemplate_SMO_Templates" action="Default" />
         <resolve name="Email Template Test\Test-EmailTempate" namespace="urn:SourceCode/Workflows" action="Default" />
       </specificOptions>
       <referenceOptions>
-        <rebind id="454" name="SourceCode.SmartObjects.Services.UserRoleManagerService.URMService" baseType="Service" action="Default" targetName="" />
-        <rebind id="3385" name="Lithium" baseType="Theme" action="Default" targetName="" />
-        <rebind id="3387" name="Form" baseType="Control" action="Default" targetName="" />
-        <rebind id="3389" name="Panel" baseType="Control" action="Default" targetName="" />
-        <rebind id="3391" name="Area" baseType="Control" action="Default" targetName="" />
-        <rebind id="3393" name="AreaItem" baseType="Control" action="Default" targetName="" />
-        <rebind id="4642" name="View" baseType="Control" action="Default" targetName="" />
-        <rebind id="4644" name="ToolbarTable" baseType="Control" action="Default" targetName="" />
-        <rebind id="4646" name="Section" baseType="Control" action="Default" targetName="" />
-        <rebind id="4648" name="Row" baseType="Control" action="Default" targetName="" />
-        <rebind id="4650" name="Cell" baseType="Control" action="Default" targetName="" />
-        <rebind id="4652" name="ListTable" baseType="Control" action="Default" targetName="" />
-        <rebind id="4654" name="Column" baseType="Control" action="Default" targetName="" />
-        <rebind id="4656" name="Label" baseType="Control" action="Default" targetName="" />
-        <rebind id="4658" name="DataLabel" baseType="Control" action="Default" targetName="" />
-        <rebind id="4660" name="TextBox" baseType="Control" action="Default" targetName="" />
-        <rebind id="4662" name="TextArea" baseType="Control" action="Default" targetName="" />
-        <rebind id="4664" name="ToolBarButton" baseType="Control" action="Default" targetName="" />
-        <rebind id="4822" name="SmartBoxService" baseType="SourceCode.SmartObjects.Services.SmartBox.SBService" action="Default" targetName="" />
-        <rebind id="8395" name="Table" baseType="Control" action="Default" targetName="" />
-        <rebind id="8400" name="com_K2_System_Workflow_SmartObject_ProcessSet" baseType="SmartObject" action="Default" targetName="" />
-        <rebind id="8413" name="DropDown" baseType="Control" action="Default" targetName="" />
-        <rebind id="8416" name="com_K2_System_Workflow_SmartObject_Activity" baseType="SmartObject" action="Default" targetName="" />
-        <rebind id="8437" name="HTMLEditor" baseType="Control" action="Default" targetName="" />
-        <rebind id="8453" name="ListBox" baseType="Control" action="Default" targetName="" />
-        <rebind id="8772" name="K2Field.ServiceBroker.EmailTemplate" baseType="Service" action="Default" targetName="" />
-        <rebind id="8889" name="Process" baseType="Object" action="Default" targetName="" />
-        <rebind id="8897" name="EventItem" baseType="Object" action="Default" targetName="" />
-        <rebind id="8902" name="ArtifactFieldPart" baseType="FieldPart" action="Default" targetName="" />
-        <rebind id="8903" name="FieldPart" baseType="Object" action="Default" targetName="" />
-        <rebind id="8930" name="SmartObjectFieldPart" baseType="FieldPart" action="Default" targetName="" />
-        <rebind id="8958" name="Inputs" baseType="K2Field" action="Default" targetName="" />
-        <rebind id="8962" name="PersistableObjectDictionaryEntry" baseType="K2Field" action="Default" targetName="" />
-        <rebind id="8999" name="Returns" baseType="K2Field" action="Default" targetName="" />
-        <rebind id="9171" name="StartRule" baseType="Object" action="Default" targetName="" />
+        <rebind id="422" name="SourceCode.SmartObjects.Services.UserRoleManagerService.URMService" baseType="Service" action="Default" targetName="" />
+        <rebind id="532" name="SmartBoxService" baseType="SourceCode.SmartObjects.Services.SmartBox.SBService" action="Default" targetName="" />
+        <rebind id="772" name="K2Field.ServiceBroker.EmailTemplate" baseType="Service" action="Default" targetName="" />
+        <rebind id="776" name="Process" baseType="Object" action="Default" targetName="" />
+        <rebind id="784" name="EventItem" baseType="Object" action="Default" targetName="" />
+        <rebind id="789" name="ArtifactFieldPart" baseType="FieldPart" action="Default" targetName="" />
+        <rebind id="790" name="FieldPart" baseType="Object" action="Default" targetName="" />
+        <rebind id="817" name="SmartObjectFieldPart" baseType="FieldPart" action="Default" targetName="" />
+        <rebind id="845" name="Inputs" baseType="K2Field" action="Default" targetName="" />
+        <rebind id="849" name="PersistableObjectDictionaryEntry" baseType="K2Field" action="Default" targetName="" />
+        <rebind id="886" name="Returns" baseType="K2Field" action="Default" targetName="" />
+        <rebind id="1058" name="StartRule" baseType="Object" action="Default" targetName="" />
+        <rebind id="2444" name="View" baseType="Control" action="Default" targetName="" />
+        <rebind id="2446" name="ToolbarTable" baseType="Control" action="Default" targetName="" />
+        <rebind id="2448" name="Section" baseType="Control" action="Default" targetName="" />
+        <rebind id="2450" name="Row" baseType="Control" action="Default" targetName="" />
+        <rebind id="2452" name="Cell" baseType="Control" action="Default" targetName="" />
+        <rebind id="2454" name="ListTable" baseType="Control" action="Default" targetName="" />
+        <rebind id="2456" name="Column" baseType="Control" action="Default" targetName="" />
+        <rebind id="2458" name="Label" baseType="Control" action="Default" targetName="" />
+        <rebind id="2460" name="DataLabel" baseType="Control" action="Default" targetName="" />
+        <rebind id="2462" name="TextBox" baseType="Control" action="Default" targetName="" />
+        <rebind id="2464" name="TextArea" baseType="Control" action="Default" targetName="" />
+        <rebind id="2466" name="ToolBarButton" baseType="Control" action="Default" targetName="" />
+        <rebind id="5549" name="Table" baseType="Control" action="Default" targetName="" />
+        <rebind id="5554" name="com_K2_System_Workflow_SmartObject_ProcessSet" baseType="SmartObject" action="Default" targetName="" />
+        <rebind id="5567" name="DropDown" baseType="Control" action="Default" targetName="" />
+        <rebind id="5570" name="com_K2_System_Workflow_SmartObject_Activity" baseType="SmartObject" action="Default" targetName="" />
+        <rebind id="5591" name="HTMLEditor" baseType="Control" action="Default" targetName="" />
+        <rebind id="5607" name="ListBox" baseType="Control" action="Default" targetName="" />
+        <rebind id="8703" name="Lithium" baseType="Theme" action="Default" targetName="" />
+        <rebind id="8705" name="Form" baseType="Control" action="Default" targetName="" />
+        <rebind id="8707" name="Panel" baseType="Control" action="Default" targetName="" />
+        <rebind id="8709" name="Area" baseType="Control" action="Default" targetName="" />
+        <rebind id="8711" name="AreaItem" baseType="Control" action="Default" targetName="" />
       </referenceOptions>
     </resolveOptions>
   </package>
