@@ -43,6 +43,7 @@ namespace K2Field.ServiceBroker.EmailTemplate
 
         public override string DescribeSchema()
         {
+
             Service.Name = "K2Field.ServiceBroker.EmailTemplate";
             Service.MetaData.DisplayName = "K2Field_ServiceBroker_EmailTemplate";
             Service.MetaData.Description = "A Service Broker that provides email templating functionality for the various functional service objects that aid the implementation of a K2 project.";
