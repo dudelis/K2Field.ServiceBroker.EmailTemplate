@@ -11,7 +11,10 @@ The current Service Broker provides functionality to enable dynamic Email Templa
 For more details and detailed instruction on how to configure it, please, refer to the documentation below.
 
 ## User Manual
-Please, refer to the following link [User Manual](https://github.com/dudelis/K2Field.ServiceBroker.EmailTemplate/wiki#user-manual)
+Please, refer to the following links:
+- [User Manual](https://github.com/dudelis/K2Field.ServiceBroker.EmailTemplate/wiki/User-Manual)
+- [How to configure Email templates in a Workflow](https://github.com/dudelis/K2Field.ServiceBroker.EmailTemplate/wiki/How-to-configure-Email-Template-in-the-Workflow)
+- [How to create a new Email Template](https://github.com/dudelis/K2Field.ServiceBroker.EmailTemplate/wiki/How-to-create-a-new-Email-template)
 
 ## Disclaimer
 The code is provided as is. If you want to contribute, please, read the [Contribution Guidelines](CONTRIBUTION.md)
