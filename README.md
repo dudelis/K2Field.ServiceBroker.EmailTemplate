@@ -10,15 +10,11 @@ The current Service Broker provides functionality to enable dynamic Email Templa
 
 For more details and detailed instruction on how to configure it, please, refer to the documentation below.
 
-## Documentation
-To be defined
-
-## Installation
-At the moment, there is no installer. To be developed later.
+## User Manual
+Please, refer to the following link [User Manual](https://github.com/dudelis/K2Field.ServiceBroker.EmailTemplate/wiki#user-manual)
 
 ## Disclaimer
 The code is provided as is. If you want to contribute, please, read the [Contribution Guidelines](CONTRIBUTION.md)
-
 
 ## License
 This software is MIT. See [License](LICENSE)
